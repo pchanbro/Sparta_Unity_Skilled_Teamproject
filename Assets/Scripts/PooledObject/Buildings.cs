@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Road : PoolAble
+public class Buildings : PoolAble
 {
     public float speed = 10;
     private Rigidbody rb;
@@ -30,7 +30,17 @@ public class Road : PoolAble
     {
         if (collision.gameObject.CompareTag("ResetWall"))
         {
-            transform.position = new Vector3(0, 0, 160); // 위치 초기화
+            // 건물의 오른쪽 라인인 경우
+            if (transform.position.x == 15)
+            {
+                GameManager.instance.SpawnBuilding(1);
+            }
+            // 건물의 왼쪽 라인인 경우
+            else
+            {
+                GameManager.instance.SpawnBuilding(-1);
+            }
+            Pool.Release(gameObject);
         }
     }
 }

@@ -203,6 +203,24 @@ MonoBehaviour:
   - objectName: Roads
     originPrefab: {fileID: 399576493678504515, guid: 3e86896e9d16d8048a9474ead72acfea, type: 3}
     count: 5
+  - objectName: Chicken_Shop
+    originPrefab: {fileID: 3529715398714031698, guid: db1dae692118e2147a3a13001acde47b, type: 3}
+    count: 5
+  - objectName: Gift_Shop
+    originPrefab: {fileID: 9177968800610783622, guid: 72b2567f1a84dfc4388fc8f5d19e577e, type: 3}
+    count: 5
+  - objectName: House
+    originPrefab: {fileID: 6770516134564760285, guid: aebc435dfa126d14884a2e8c2981473a, type: 3}
+    count: 5
+  - objectName: Pizza
+    originPrefab: {fileID: 7191114027346979769, guid: 0e655256a8c151a40a2e7b611dcfff75, type: 3}
+    count: 5
+  - objectName: Sky_big
+    originPrefab: {fileID: 4953281278914165150, guid: d11dd4be164f1b9478f550d7a1a479b2, type: 3}
+    count: 5
+  - objectName: Sky_small
+    originPrefab: {fileID: 3297645248821238368, guid: 7dcd13d9466c9c644acf99f8764cc6e8, type: 3}
+    count: 5
 --- !u!1 &358134209
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,8 +265,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfe96c2cb6cbe24f9f3f87b0ef08b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGameStart: 0
-  mapSpeed: 0
+  isGameStart: 1
+  buildingName:
+  - Chicken_Shop
+  - Gift_Shop
+  - House
+  - Pizza
+  - Sky_big
+  - Sky_small
 --- !u!1 &557526096
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +394,7 @@ Transform:
   m_GameObject: {fileID: 649620501}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -50}
+  m_LocalPosition: {x: 0, y: 0, z: -60}
   m_LocalScale: {x: 50, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
