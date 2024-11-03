@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 {
     public float horizontalMoveDistance = 5f;
     public float moveSpeed = 5f;
+    public float jumpSpeed = 5f;
     int curHorizontalPosition = 0;
     private Vector3 targetPosition;
     private Vector3 newPosition;
@@ -99,7 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
-            rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
+            rigidbody.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
 
         }
     }
