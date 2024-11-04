@@ -1,16 +1,17 @@
 using UnityEngine;
 
-public class SpeedUpItem : MonoBehaviour
+public class SpeedUpItem : PoolAble
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.TryGetComponent<PlayerController>(out var playerController))
         {
-            ItemManager.Instance.SetPlayerTransform(other.transform);
+            ItemManager.Instance.SetPlayerController(playerController);
             ItemManager.Instance.ActivateSpeedUp();
-            Destroy(gameObject);
+            ReleaseObject();  // 풀로 반환
         }
     }
 }
+
 
 

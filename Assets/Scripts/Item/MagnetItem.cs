@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class MagnetItem : MonoBehaviour
+public class MagnetItem : PoolAble
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.TryGetComponent<PlayerController>(out var playerController))
         {
-            ItemManager.Instance.SetPlayerTransform(other.transform);
+            ItemManager.Instance.SetPlayerController(playerController);
             ItemManager.Instance.ActivateMagnet();
-            Destroy(gameObject);
+            ReleaseObject();  // 풀로 반환
         }
     }
 }
+
+
 
 

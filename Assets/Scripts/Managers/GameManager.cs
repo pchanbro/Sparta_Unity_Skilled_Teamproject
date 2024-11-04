@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public bool isGameStart = false;
     public string[] buildingName;
+    public string[] itemNames;
     float mapSpeed = 10;
 
     private void Awake()
@@ -53,6 +54,12 @@ public class GameManager : MonoBehaviour
 
             zPosition += 20;
         }
+        for (int t = 0; t < itemNames.Length; t++)
+        {
+            GameObject item = ObjectPoolManager.instance.GetGo(itemNames[t]);
+            // 아이템 위치 설정 (건물과 상관없이)
+            item.transform.position = new Vector3(Random.Range(-5, 5), 1, Random.Range(10, 50));
+        }
     }
 
     public void SpawnBuilding(int Direction)
@@ -73,5 +80,5 @@ public class GameManager : MonoBehaviour
             building_1.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
         }
 
-    }
+    }  
 }
