@@ -1411,6 +1411,15 @@ MonoBehaviour:
   - objectName: Sky_small
     originPrefab: {fileID: 3297645248821238368, guid: 7dcd13d9466c9c644acf99f8764cc6e8, type: 3}
     count: 5
+  - objectName: SpeedUpItem
+    originPrefab: {fileID: 5148831372906199482, guid: 7e593ea3e95c90746ac2e0e7b8716bf9, type: 3}
+    count: 5
+  - objectName: MagnetItem
+    originPrefab: {fileID: 4163438285136040189, guid: e70667d820e687643b6c1bfe6754a2e0, type: 3}
+    count: 5
+  - objectName: SuperJumpItem
+    originPrefab: {fileID: 6475243727478962007, guid: b0dfdd76a411d0447b96dc2009708280, type: 3}
+    count: 5
 --- !u!1 &358134209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,6 +1472,10 @@ MonoBehaviour:
   - Pizza
   - Sky_big
   - Sky_small
+  itemNames:
+  - SpeedUpItem
+  - MagnetItem
+  - SuperJumpItem
 --- !u!1001 &380061285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4142,6 +4155,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b82e76f4092b7d24aaeecddf36fe8d3b, type: 3}
   m_PrefabInstance: {fileID: 1021271002}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1031528131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1031528133}
+  - component: {fileID: 1031528132}
+  m_Layer: 0
+  m_Name: ItemManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1031528132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031528131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31628dfe694eb7048a5cffce881bbdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMultiplier: 150
+  jumpMultiplier: 4
+  magnetRange: 20
+  magnetPullSpeed: 20
+  effectDuration: 10
+  itemSpeed: 10
+--- !u!4 &1031528133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031528131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1036244967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8680,3 +8743,4 @@ SceneRoots:
   - {fileID: 183794877}
   - {fileID: 358134210}
   - {fileID: 356263744}
+  - {fileID: 1031528133}
