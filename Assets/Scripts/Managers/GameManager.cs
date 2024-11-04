@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SettingMap();
+        PopupManager.Instance.CreatePopup(PopupType.InGamePopup);
     }
 
     public void SettingMap()

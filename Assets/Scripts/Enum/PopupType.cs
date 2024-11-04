@@ -1,5 +1,7 @@
 public enum PopupType
 {
-    Title=0,
-    InGame,
+    TitlePopup=0,
+    InGamePopup,
+    PausePopup,
+    GameoverPopup,
 }
