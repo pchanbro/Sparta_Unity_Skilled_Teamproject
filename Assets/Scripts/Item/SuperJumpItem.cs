@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class SuperJumpItem : MonoBehaviour
+public class SuperJumpItem : PoolAble
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.TryGetComponent<PlayerController>(out var playerController))
         {
-            ItemManager.Instance.SetPlayerTransform(other.transform);
+            ItemManager.Instance.SetPlayerController(playerController);
             ItemManager.Instance.ActivateSuperJump();
-            Destroy(gameObject);
+            ReleaseObject();  // 풀로 반환
         }
     }
 }
+
+
+
 
 

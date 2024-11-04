@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        ItemManager.Instance.SetPlayerController(this);
     }
 
     void FixedUpdate()
