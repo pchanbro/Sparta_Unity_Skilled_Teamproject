@@ -7,8 +7,7 @@ public class ObjectPoolManager : MonoBehaviour
     public static ObjectPoolManager instance;
 
     // 생성할 오브젝트의 정보를 미리 담는 배열
-    [SerializeField]
-    private ObjectInfo[] objectInfos;
+    public ObjectInfo[] objectInfos;
 
     // 생성할 오브젝트의 key값지정을 위한 변수
     private string objectName;

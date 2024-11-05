@@ -7,9 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public bool isGameStart = false;
-    public string[] buildingName;
+    public string[] buildingNames;
     public string[] itemNames;
-    float mapSpeed = 10;
 
     private void Awake()
     {
@@ -27,8 +26,10 @@ public class GameManager : MonoBehaviour
         float zPosition = 0;
         for(int i = 0; i < 5; i++)
         {
-            GameObject roads = ObjectPoolManager.instance.GetGo("Roads");
-            roads.transform.position = roads.transform.position + new Vector3(0, 0, zPosition);
+            GameObject roads_1 = ObjectPoolManager.instance.GetGo("Roads");
+            GameObject roads_2 = ObjectPoolManager.instance.GetGo("Roads");
+            roads_1.transform.position = roads_1.transform.position + new Vector3(0, 0, zPosition);
+            roads_2.transform.position = roads_2.transform.position + new Vector3(30, 0, zPosition);
             zPosition += 40;
         }
 
@@ -36,15 +37,15 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             int RN_1, RN_2;
-            RN_1 = UnityEngine.Random.Range(0, buildingName.Length);
+            RN_1 = UnityEngine.Random.Range(0, buildingNames.Length);
             while(true)
             {
-                RN_2 = UnityEngine.Random.Range(0, buildingName.Length);
+                RN_2 = UnityEngine.Random.Range(0, buildingNames.Length);
                 if (RN_2 != RN_1) break;
             }
 
-            GameObject building_1 = ObjectPoolManager.instance.GetGo(buildingName[RN_1]);
-            GameObject building_2 = ObjectPoolManager.instance.GetGo(buildingName[RN_2]);
+            GameObject building_1 = ObjectPoolManager.instance.GetGo(buildingNames[RN_1]);
+            GameObject building_2 = ObjectPoolManager.instance.GetGo(buildingNames[RN_2]);
 
             building_1.transform.position = building_1.transform.position + new Vector3(15, 0, -10 + zPosition);
             building_1.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
@@ -64,8 +65,8 @@ public class GameManager : MonoBehaviour
 
     public void SpawnBuilding(int Direction)
     {
-        int RN_1 = UnityEngine.Random.Range(0, buildingName.Length);
-        GameObject building_1 = ObjectPoolManager.instance.GetGo(buildingName[RN_1]);
+        int RN_1 = UnityEngine.Random.Range(0, buildingNames.Length);
+        GameObject building_1 = ObjectPoolManager.instance.GetGo(buildingNames[RN_1]);
 
         // 오른쪽 건물 건설
         if(Direction > 0)

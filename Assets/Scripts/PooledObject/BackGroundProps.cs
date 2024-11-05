@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Road : PoolAble
+public class BackGroundProps : MonoBehaviour
 {
     public float speed = 10;
     private Rigidbody rb;
@@ -17,11 +17,11 @@ public class Road : PoolAble
     {
         if (GameManager.instance.isGameStart)
         {
-            MoveRoad();
+            Move();
         }
     }
 
-    public void MoveRoad()
+    public void Move()
     {
         Vector3 targetPosition = rb.position + Vector3.back * speed * Time.fixedDeltaTime;
         rb.MovePosition(targetPosition); // Rigidbody를 사용하여 부드럽게 이동
@@ -31,8 +31,8 @@ public class Road : PoolAble
     {
         if (collision.gameObject.CompareTag("ResetWall"))
         {
-            if(transform.position.x >= 30) transform.position = new Vector3(30, 0, 160); // 위치 초기화
-            else transform.position = new Vector3(0, 0, 160); // 위치 초기화
+            int Rn_x = Random.Range(-25, -30);
+            transform.position = new Vector3(Rn_x, 0, 160); // 위치 초기화
         }
     }
 }

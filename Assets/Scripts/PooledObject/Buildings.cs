@@ -33,14 +33,13 @@ public class Buildings : PoolAble
             // 건물의 오른쪽 라인인 경우
             if (transform.position.x == 15)
             {
-                GameManager.instance.SpawnBuilding(1);
+                transform.position = new Vector3(15, 0, 160); // 위치 초기화
             }
             // 건물의 왼쪽 라인인 경우
             else
             {
-                GameManager.instance.SpawnBuilding(-1);
+                transform.position = new Vector3(-15, 0, 160); // 위치 초기화
             }
-            Pool.Release(gameObject);
         }
     }
 }
