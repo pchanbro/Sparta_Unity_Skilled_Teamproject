@@ -68,12 +68,12 @@ public class ItemManager : MonoBehaviour
 
     private IEnumerator SuperJumpCoroutine()
     {
-        float originalJumpSpeed = playerController.jumpSpeed;
-        playerController.jumpSpeed *= jumpMultiplier;
+        float originalJumpSpeed = playerController.jumpForce;
+        playerController.jumpForce *= jumpMultiplier;
 
         yield return new WaitForSeconds(effectDuration);
 
-        playerController.jumpSpeed = originalJumpSpeed;
+        playerController.jumpForce = originalJumpSpeed;
     }
 
     private IEnumerator MagnetCoroutine()

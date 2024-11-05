@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 {
     public float horizontalMoveDistance = 5f;
     public float moveSpeed = 5f;
-    public float jumpSpeed = 5f;
+    public float jumpForce = 5f;
     int curHorizontalPosition = 0;
     private Vector3 targetPosition;
     private Vector3 newPosition;
@@ -32,9 +32,16 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rigidbody;
 
+    public event Action OnMoveEvent;
+    public event Action OnHitEvent;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
         ItemManager.Instance.SetPlayerController(this);
     }
 
@@ -52,6 +59,14 @@ public class PlayerController : MonoBehaviour
         {
             // 움직임이 자연스럽게 보이도록 deltaTime 마다 잘게 쪼갠 위치로 이동시키기 위해 위치를 설정한다. 
             SetMidPoint();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Obstacle"))
+        {
+            OnHitEvent?.Invoke();
         }
     }
 
@@ -87,6 +102,10 @@ public class PlayerController : MonoBehaviour
             {
                 curHorizontalPosition += 1;
             }
+            else
+            {
+                return;
+            }
 
             // 목표 지점을 잡는다.
             targetPosition = new Vector3(curHorizontalPosition * horizontalMoveDistance, transform.position.y, transform.position.z);
@@ -94,6 +113,8 @@ public class PlayerController : MonoBehaviour
 
             // 움직임 중에 재입력으로 움직이지 못하도록 띄워둔다.
             rigidbody.AddForce(Vector3.up * 2, ForceMode.Impulse);
+
+            OnMoveEvent?.Invoke();
         }
     }
 
@@ -101,8 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
-            rigidbody.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-
+            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 
