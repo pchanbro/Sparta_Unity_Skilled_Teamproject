@@ -6,9 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public int playerSpeed = 1;
     public bool isGameStart = false;
     public string[] buildingNames;
     public string[] itemNames;
+    public string[] obstacleNames;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SettingMap();
+        StartCoroutine(SpawnObstacle());
     }
 
     public void SettingMap()
@@ -63,6 +66,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnObstacle()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2.0f);
+
+            int randomIndex = UnityEngine.Random.Range(0, obstacleNames.Length);
+            GameObject obstacle = ObjectPoolManager.instance.GetGo(obstacleNames[randomIndex]);
+
+            float xPosition = Random.Range(-4f, 4f);
+            obstacle.transform.position = new Vector3(xPosition, 2, 160);
+            obstacle.SetActive(true);
+        }
+    }
+
     public void SpawnBuilding(int Direction)
     {
         int RN_1 = UnityEngine.Random.Range(0, buildingNames.Length);
@@ -82,4 +100,6 @@ public class GameManager : MonoBehaviour
         }
 
     }  
+
+
 }
