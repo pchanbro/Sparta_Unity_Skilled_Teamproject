@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool isGameStart = false;
     public string[] buildingName;
     public string[] itemNames;
+    public float itemSpawnInterval = 5f; // 아이템 소환 주기 설정
     float mapSpeed = 10;
 
     private void Awake()
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SettingMap();
+        StartCoroutine(SpawnItemsInCenter());
+        GetComponent<AudioSource>().Play();
     }
 
     public void SettingMap()
@@ -54,11 +57,21 @@ public class GameManager : MonoBehaviour
 
             zPosition += 20;
         }
-        for (int t = 0; t < itemNames.Length; t++)
+    }
+    private IEnumerator SpawnItemsInCenter()
+    {
+        while (true)
         {
-            GameObject item = ObjectPoolManager.instance.GetGo(itemNames[t]);
-            // 아이템 위치 설정 (건물과 상관없이)
-            item.transform.position = new Vector3(Random.Range(-5, 5), 1, Random.Range(10, 50));
+            // itemNames 배열 중 랜덤으로 하나 선택하여 중앙에 소환
+            int randomIndex = UnityEngine.Random.Range(0, itemNames.Length);
+            string randomItemName = itemNames[randomIndex];
+
+            GameObject item = ObjectPoolManager.instance.GetGo(randomItemName);
+            float randomX = Random.Range(-5, 5);
+            item.transform.position = new Vector3(randomX, 1,  Random.Range(10, 50));
+
+            // 일정 시간 대기 후 다음 소환
+            yield return new WaitForSeconds(itemSpawnInterval);
         }
     }
 
