@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public string[] buildingNames;
     public string[] itemNames;
     public string[] obstacleNames;
+    public float itemSpawnInterval = 5f; 
+    float mapSpeed = 10;
+
 
     private void Awake()
     {
@@ -22,6 +25,8 @@ public class GameManager : MonoBehaviour
     {
         SettingMap();
         StartCoroutine(SpawnObstacle());
+        StartCoroutine(SpawnItemsInCenter());
+        GetComponent<AudioSource>().Play();
     }
 
     public void SettingMap()
@@ -58,11 +63,21 @@ public class GameManager : MonoBehaviour
 
             zPosition += 20;
         }
-        for (int t = 0; t < itemNames.Length; t++)
+    }
+    private IEnumerator SpawnItemsInCenter()
+    {
+        while (true)
         {
-            GameObject item = ObjectPoolManager.instance.GetGo(itemNames[t]);
-            // ¾ÆÀÌÅÛ À§Ä¡ ¼³Á¤ (°Ç¹°°ú »ó°ü¾øÀÌ)
-            item.transform.position = new Vector3(Random.Range(-5, 5), 1, Random.Range(10, 50));
+            // itemNames ï¿½è¿­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ß¾Ó¿ï¿½ ï¿½ï¿½È¯
+            int randomIndex = UnityEngine.Random.Range(0, itemNames.Length);
+            string randomItemName = itemNames[randomIndex];
+
+            GameObject item = ObjectPoolManager.instance.GetGo(randomItemName);
+            float randomX = Random.Range(-5, 5);
+            item.transform.position = new Vector3(randomX, 1,  Random.Range(10, 50));
+
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+            yield return new WaitForSeconds(itemSpawnInterval);
         }
     }
 
@@ -86,13 +101,13 @@ public class GameManager : MonoBehaviour
         int RN_1 = UnityEngine.Random.Range(0, buildingNames.Length);
         GameObject building_1 = ObjectPoolManager.instance.GetGo(buildingNames[RN_1]);
 
-        // ¿À¸¥ÂÊ °Ç¹° °Ç¼³
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½ ï¿½Ç¼ï¿½
         if(Direction > 0)
         {
             building_1.transform.position = new Vector3(15, 0, 160);
             building_1.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
         }
-        // ¿ÞÂÊ °Ç¹° °Ç¼³
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½ ï¿½Ç¼ï¿½
         else
         {
             building_1.transform.position = new Vector3(-15, 0, 160);
