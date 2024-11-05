@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnObstacle());
         StartCoroutine(SpawnItemsInCenter());
         GetComponent<AudioSource>().Play();
+        PopupManager.Instance.CreatePopup(PopupType.InGamePopup);
     }
 
     public void SettingMap()

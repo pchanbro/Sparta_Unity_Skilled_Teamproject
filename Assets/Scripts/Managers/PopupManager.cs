@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public sealed class PopupManager : MonoBehaviour, ICreate
 {
+    public static PopupManager Instance { get; private set; }
     private readonly Dictionary<PopupType, GameObject> popupContainerDic = new Dictionary<PopupType, GameObject>();     //ÆË¾÷ Å¸ÀÔ º°·Î ÇÁ¸®ÆÕ ÀúÀåÇÏ´Â dic
     private readonly Stack<GameObject> depth = new Stack<GameObject>();                                                 //ÆË¾÷ µª½º
 

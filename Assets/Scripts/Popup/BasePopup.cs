@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class BasePopup : MonoBehaviour
 {
-    private PopupManager popupManager;
     public Action ClossEvent;       // ÆË¾÷ ´ÝÈú¶§ È£ÃâµÇ´Â ÇÔ¼ö
 
     private void OnEnable()
@@ -25,12 +24,12 @@ public class BasePopup : MonoBehaviour
     
     public virtual void Close()
     {
-        if (!popupManager.ComparerLastDepth(gameObject))
+        if (!PopupManager.Instance.ComparerLastDepth(gameObject))
             return;
 
 
         ClossEvent?.Invoke();
-        popupManager.Close();
+        PopupManager.Instance.Close();
     }
     
 }
