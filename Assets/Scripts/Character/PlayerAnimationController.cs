@@ -17,14 +17,16 @@ public class PlayerAnimationController : AnimationController
 
     void Start()
     {
-        // 공격하거나 움직일 때 애니메이션이 같이 반응하도록 구독
+        // 장애물에 부딪히거나 움직일 때 애니메이션이 같이 반응하도록 구독
+        // playerController에서 실행해준다.
         controller.OnMoveEvent += Move;
         controller.OnHitEvent += Hit;
     }
 
     private void Update()
     {
-        animator.SetFloat(IsJump, gameObject.transform.position.y);
+        // y좌표(높이)에 따라 애니메이션 실행하도록 함
+        animator.SetFloat(IsJump, animator.gameObject.transform.position.y);
     }
 
     private void Move()

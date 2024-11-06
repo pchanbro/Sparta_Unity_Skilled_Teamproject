@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    private Dictionary<int, Character> characterDictionary = new Dictionary<int, Character>();
+
     private static CharacterManager instance;
     public static CharacterManager Instance
     {
@@ -36,6 +38,30 @@ public class CharacterManager : MonoBehaviour
             if (instance == this)
             {
                 Destroy(gameObject);
+            }
+        }
+    }
+
+    private void Start()
+    {
+        LoadCharacter();
+    }
+
+    public void SetPlayerCharacter(int characterNum)
+    {
+        Character character = characterDictionary[characterNum];
+        player.SetCharacter(character);
+    }
+
+    private void LoadCharacter()
+    {
+        foreach (Transform child in player.transform)
+        {
+            Character character = child.GetComponent<Character>();
+            if(character != null)
+            {
+                characterDictionary[character.SerialNumber] = character;
+                character.gameObject.SetActive(false);
             }
         }
     }

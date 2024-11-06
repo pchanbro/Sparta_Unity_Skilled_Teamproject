@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 8076616644011640311}
   - component: {fileID: 7884163564464549681}
   m_Layer: 0
-  m_Name: Character
+  m_Name: Monkey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

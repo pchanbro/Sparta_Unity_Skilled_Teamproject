@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    protected Animator animator;
+    public Animator animator;
     protected PlayerController controller;
 
     protected virtual void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         controller = GetComponent<PlayerController>();
     }
 }

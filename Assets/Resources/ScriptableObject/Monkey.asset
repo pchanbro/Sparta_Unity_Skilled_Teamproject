@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720da515834dc7f4b84bc423e5b06187, type: 3}
+  m_Name: Monkey
+  m_EditorClassIdentifier: 
+  serialNumber: 0
+  name: "\uC6D0\uC22D\uC774"
+  describe: "\uB3C4\uC2DC\uB97C \uD0C8\uCD9C\uD558\uB294 \uC6D0\uC22D\uC774"

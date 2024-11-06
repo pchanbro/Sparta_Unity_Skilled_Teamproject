@@ -20,9 +20,9 @@ public enum HorizontalMoveDir
 
 public class PlayerController : MonoBehaviour
 {
-    public float horizontalMoveDistance = 5f;
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
+    public float horizontalMoveDistance = 5f;
     int curHorizontalPosition = 0;
     private Vector3 targetPosition;
     private Vector3 newPosition;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rigidbody = GetComponentInChildren<Rigidbody>();
     }
 
     private void Start()
@@ -62,14 +62,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("Obstacle"))
-        {
-            OnHitEvent?.Invoke();
-        }
-    }
-
     private void Move()
     {
         // 근데 SetMovePoint만 하면 영원히 1에 정확히 도달하지는 못한다. 그렇기에 목표지점에 거의 도달하면 도착하게 만들어준다.
@@ -84,11 +76,12 @@ public class PlayerController : MonoBehaviour
 
     private void SetMidPoint()
     {
-        newPosition = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * moveSpeed);
+        newPosition = Vector3.Lerp(rigidbody.transform.position, targetPosition, Time.deltaTime * moveSpeed);
     }
 
     public void OnHorizontalMove(InputAction.CallbackContext context)
     {
+        Debug.Log(IsGrounded());
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
             int inputDir = (int)context.ReadValue<float>();
@@ -108,7 +101,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // 목표 지점을 잡는다.
-            targetPosition = new Vector3(curHorizontalPosition * horizontalMoveDistance, transform.position.y, transform.position.z);
+            targetPosition = new Vector3(curHorizontalPosition * horizontalMoveDistance, rigidbody.transform.position.y, rigidbody.transform.position.z);
             isMoving = true;
 
             // 움직임 중에 재입력으로 움직이지 못하도록 띄워둔다.
@@ -130,10 +123,10 @@ public class PlayerController : MonoBehaviour
     {
         Ray[] rays = new Ray[4]
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down)
+            new Ray(rigidbody.transform.position + (rigidbody.transform.forward * 0.2f) + (rigidbody.transform.up * 0.1f), Vector3.down),
+            new Ray(rigidbody.transform.position + (-rigidbody.transform.forward * 0.2f) + (rigidbody.transform.up * 0.1f), Vector3.down),
+            new Ray(rigidbody.transform.position + (rigidbody.transform.right * 0.2f) + (rigidbody.transform.up * 0.1f), Vector3.down),
+            new Ray(rigidbody.transform.position + (-rigidbody.transform.right * 0.2f) + (rigidbody.transform.up * 0.1f), Vector3.down)
         };
 
         for (int i = 0; i < rays.Length; i++)
@@ -145,5 +138,20 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void OnTrigger()
+    {
+        OnHitEvent?.Invoke();
+    }
+
+    public void SetCharacter()
+    {
+        rigidbody = GetComponentInChildren<Rigidbody>();
+    }
+    
+    public void OnCharacterChoice(InputAction.CallbackContext context)
+    {
+        CharacterManager.Instance.SetPlayerCharacter(0);
     }
 }
