@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 720da515834dc7f4b84bc423e5b06187, type: 3}
-  m_Name: Mouse
+  m_Name: Sparrow
   m_EditorClassIdentifier: 
-  serialNumber: 1
-  name: "\uC950"
-  describe: "\uB3C4\uC2DC\uB97C \uD0C8\uCD9C\uD558\uB294 \uC950"
+  serialNumber: 2
+  name: "\uCC38\uC0C8"
+  describe: "\uB3C4\uC2DC\uB97C \uD0C8\uCD9C\uD558\uB294 \uCC38\uC0C8"

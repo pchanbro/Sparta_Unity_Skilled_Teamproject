@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public PlayerController controller;
     private Character character;
 
     private void Awake()
     {
-        controller = GetComponent<PlayerController>();
         CharacterManager.Instance.Player = this;
     }
 
@@ -20,6 +18,5 @@ public class Player : MonoBehaviour
 
         character = newCharacter;
         character.gameObject.SetActive(true);
-        controller.SetCharacter();
     }
 }

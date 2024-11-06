@@ -26,6 +26,20 @@ public class CharacterManager : MonoBehaviour
         set { player = value; }
     }
 
+    private PlayerController playerController;
+    public PlayerController PlayerController
+    {
+        get { return playerController; }
+        set { playerController = value; }
+    }
+
+    private PlayerAnimationController playerAnimationController;
+    public PlayerAnimationController PlayerAnimationController
+    {
+        get { return playerAnimationController; }
+        set { playerAnimationController = value; }
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -51,6 +65,8 @@ public class CharacterManager : MonoBehaviour
     {
         Character character = characterDictionary[characterNum];
         player.SetCharacter(character);
+        playerController.SetCharacter();
+        playerAnimationController.SetCharacter();
     }
 
     private void LoadCharacter()

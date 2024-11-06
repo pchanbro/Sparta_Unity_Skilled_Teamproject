@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public enum HorizontalPosition
 { 
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponentInChildren<Rigidbody>();
+        CharacterManager.Instance.PlayerController = this;
     }
 
     private void Start()
@@ -123,15 +125,15 @@ public class PlayerController : MonoBehaviour
     {
         Ray[] rays = new Ray[4]
         {
-            new Ray(rigidbody.transform.position + (rigidbody.transform.forward * 0.2f) + (rigidbody.transform.up * 0.1f), Vector3.down),
-            new Ray(rigidbody.transform.position + (-rigidbody.transform.forward * 0.2f) + (rigidbody.transform.up * 0.1f), Vector3.down),
-            new Ray(rigidbody.transform.position + (rigidbody.transform.right * 0.2f) + (rigidbody.transform.up * 0.1f), Vector3.down),
-            new Ray(rigidbody.transform.position + (-rigidbody.transform.right * 0.2f) + (rigidbody.transform.up * 0.1f), Vector3.down)
+            new Ray(rigidbody.transform.position + (rigidbody.transform.forward * 0.2f) + (rigidbody.transform.up * 0.3f), Vector3.down),
+            new Ray(rigidbody.transform.position + (-rigidbody.transform.forward * 0.2f) + (rigidbody.transform.up * 0.3f), Vector3.down),
+            new Ray(rigidbody.transform.position + (rigidbody.transform.right * 0.2f) + (rigidbody.transform.up * 0.3f), Vector3.down),
+            new Ray(rigidbody.transform.position + (-rigidbody.transform.right * 0.2f) + (rigidbody.transform.up * 0.3f), Vector3.down)
         };
 
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i], 0.1f, groundLayerMask))
+            if (Physics.Raycast(rays[i], 0.4f, groundLayerMask))
             {
                 return true;
             }
@@ -149,9 +151,30 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody = GetComponentInChildren<Rigidbody>();
     }
-    
+
+    // 이 밑은 임시로 캐릭터를 소환하기 위한 메서드들
+    public Image image;
+
     public void OnCharacterChoice(InputAction.CallbackContext context)
     {
+        image.gameObject.SetActive(true);
+    }
+
+    public void SpawnZero()
+    {
         CharacterManager.Instance.SetPlayerCharacter(0);
+        image.gameObject.SetActive(false);
+    }
+
+    public void SpawnOne()
+    {
+        CharacterManager.Instance.SetPlayerCharacter(1);
+        image.gameObject.SetActive(false);
+    }
+
+    public void SpawnTwo()
+    {
+        CharacterManager.Instance.SetPlayerCharacter(2);
+        image.gameObject.SetActive(false);
     }
 }

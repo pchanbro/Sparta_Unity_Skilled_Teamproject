@@ -13,6 +13,7 @@ public class PlayerAnimationController : AnimationController
     protected override void Awake()
     {
         base.Awake();
+        CharacterManager.Instance.PlayerAnimationController = this;
     }
 
     void Start()
@@ -37,5 +38,10 @@ public class PlayerAnimationController : AnimationController
     private void Hit()
     {
         animator.SetTrigger(IsHit);
+    }
+
+    public void SetCharacter()
+    {
+        animator = GetComponentInChildren<Animator>();
     }
 }
