@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BackGroundProps : MonoBehaviour
 {
-    public float speed = 10;
     private Rigidbody rb;
 
 
@@ -15,7 +14,7 @@ public class BackGroundProps : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.instance.isGameStart)
+        if (InGameManagers.Game.isGameStart)
         {
             Move();
         }
@@ -23,7 +22,7 @@ public class BackGroundProps : MonoBehaviour
 
     public void Move()
     {
-        Vector3 targetPosition = rb.position + Vector3.back * speed * Time.fixedDeltaTime;
+        Vector3 targetPosition = rb.position + Vector3.back * InGameManagers.Game.totalSpeed * Time.fixedDeltaTime;
         rb.MovePosition(targetPosition); // Rigidbody를 사용하여 부드럽게 이동
     }
 

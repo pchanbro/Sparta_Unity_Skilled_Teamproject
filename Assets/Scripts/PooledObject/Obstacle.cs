@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Obstacle : PoolAble
 {
-    public float speed = 10;
+    public int addtionalSpeed = 0;
     public float rotationSpeed = 50f; // 회전 속도
     public bool isRotate = false;
     private Rigidbody rb;
@@ -16,7 +16,7 @@ public class Obstacle : PoolAble
 
     private void FixedUpdate()
     {
-        if (GameManager.instance.isGameStart)
+        if (InGameManagers.Game.isGameStart)
         {
             Move();
         }
@@ -24,8 +24,16 @@ public class Obstacle : PoolAble
 
     public void Move()
     {
-        Vector3 targetPosition = rb.position + Vector3.back * speed * Time.fixedDeltaTime;
-        rb.MovePosition(targetPosition); // Rigidbody를 사용하여 부드럽게 이동
+        if(InGameManagers.Game.totalSpeed != 0)
+        {
+            Vector3 targetPosition = rb.position + Vector3.back * (InGameManagers.Game.totalSpeed + addtionalSpeed) * Time.fixedDeltaTime;
+            rb.MovePosition(targetPosition); // Rigidbody를 사용하여 부드럽게 이동
+        }
+        else
+        {
+            Vector3 targetPosition = rb.position + Vector3.back * InGameManagers.Game.totalSpeed * Time.fixedDeltaTime;
+            rb.MovePosition(targetPosition); // Rigidbody를 사용하여 부드럽게 이동
+        }
 
         if(isRotate)
         {

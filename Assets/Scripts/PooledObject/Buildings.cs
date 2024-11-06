@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Buildings : PoolAble
 {
-    public float speed = 10;
     private Rigidbody rb;
 
     private void Awake()
@@ -14,7 +13,7 @@ public class Buildings : PoolAble
 
     private void FixedUpdate()
     {
-        if (GameManager.instance.isGameStart)
+        if (InGameManagers.Game.isGameStart)
         {
             MoveRoad();
         }
@@ -22,7 +21,7 @@ public class Buildings : PoolAble
 
     public void MoveRoad()
     {
-        Vector3 targetPosition = rb.position + Vector3.back * speed * Time.fixedDeltaTime;
+        Vector3 targetPosition = rb.position + Vector3.back * InGameManagers.Game.totalSpeed * Time.fixedDeltaTime;
         rb.MovePosition(targetPosition); // Rigidbody를 사용하여 부드럽게 이동
     }
 

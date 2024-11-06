@@ -6,8 +6,8 @@ public class SuperJumpItem : PoolAble
     {
         if (other.TryGetComponent<PlayerController>(out var playerController))
         {
-            ItemManager.Instance.SetPlayerController(playerController);
-            ItemManager.Instance.ActivateSuperJump();
+            InGameManagers.Item.SetPlayerController(playerController);
+            InGameManagers.Item.ActivateSuperJump();
             ReleaseObject();  // 풀로 반환
         }
     }

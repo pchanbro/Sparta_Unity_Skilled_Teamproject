@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        ItemManager.Instance.SetPlayerController(this);
+        InGameManagers.Item.SetPlayerController(this);
     }
 
     void FixedUpdate()

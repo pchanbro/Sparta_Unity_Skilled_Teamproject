@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance;
-
     [Header("Audio Sources")]
     public AudioSource backgroundMusicSource;  // 배경음악용 AudioSource
     public AudioSource sfxSource;              // 효과음용 AudioSource
@@ -16,18 +14,21 @@ public class SoundManager : MonoBehaviour
     public AudioClip inGameBGM;                // InGame 씬 배경음악
     public AudioClip itemCollectSound;         // 아이템 수집 효과음
 
+    private static SoundManager instance; // Singleton 인스턴스
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // 씬이 전환되어도 SoundManager 유지
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
 
     private void Start()
     {

@@ -4,8 +4,6 @@ using UnityEngine.Pool;
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    public static ObjectPoolManager instance;
-
     // 생성할 오브젝트의 정보를 미리 담는 배열
     public ObjectInfo[] objectInfos;
 
@@ -20,12 +18,8 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) instance = this;
-        else Destroy(this.gameObject);
-
         InitalizePool();
     }
-
 
     private void InitalizePool()
     {
