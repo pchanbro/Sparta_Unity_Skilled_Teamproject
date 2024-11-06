@@ -13,10 +13,12 @@ public class GameManager : MonoBehaviour
     public string[] obstacleNames;
     public float itemSpawnInterval = 5f; 
     float mapSpeed = 10;
+    public GameObject inGamePopup;
 
 
     private void Awake()
     {
+        inGamePopup.SetActive(true);
         if (instance == null) instance = this;
         else Destroy(this.gameObject);
     }
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour
         SettingMap();
         StartCoroutine(SpawnObstacle());
         StartCoroutine(SpawnItemsInCenter());
-        PopupManager.Instance.CreatePopup(PopupType.InGamePopup);
+        GetComponent<AudioSource>().Play();
     }
 
     public void SettingMap()
