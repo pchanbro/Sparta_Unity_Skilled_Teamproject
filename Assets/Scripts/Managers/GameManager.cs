@@ -1,20 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Utilities;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     public int playerSpeed = 1;
+    public float itemSpawnInterval = 5f;
     public bool isGameStart = false;
     public string[] buildingNames;
     public string[] itemNames;
     public string[] obstacleNames;
-    public float itemSpawnInterval = 5f; 
+    private float[] xPos_Two = { -2.5f, 2.5f};
+    private float[] xPos_Three = { -5, 0 ,5f};
     float mapSpeed = 10;
     public GameObject inGamePopup;
-
+    public Material[] busColor;
 
     private void Awake()
     {
@@ -28,7 +33,6 @@ public class GameManager : MonoBehaviour
         SettingMap();
         StartCoroutine(SpawnObstacle());
         StartCoroutine(SpawnItemsInCenter());
-        GetComponent<AudioSource>().Play();
     }
 
     public void SettingMap()
@@ -37,9 +41,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < 5; i++)
         {
             GameObject roads_1 = ObjectPoolManager.instance.GetGo("Roads");
-            GameObject roads_2 = ObjectPoolManager.instance.GetGo("Roads");
             roads_1.transform.position = roads_1.transform.position + new Vector3(0, 0, zPosition);
-            roads_2.transform.position = roads_2.transform.position + new Vector3(30, 0, zPosition);
             zPosition += 40;
         }
 
@@ -70,7 +72,6 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            // itemNames �迭 �� �������� �ϳ� �����Ͽ� �߾ӿ� ��ȯ
             int randomIndex = UnityEngine.Random.Range(0, itemNames.Length);
             string randomItemName = itemNames[randomIndex];
 
@@ -78,7 +79,6 @@ public class GameManager : MonoBehaviour
             float randomX = Random.Range(-5, 5);
             item.transform.position = new Vector3(randomX, 1,  Random.Range(10, 50));
 
-            // ���� �ð� ��� �� ���� ��ȯ
             yield return new WaitForSeconds(itemSpawnInterval);
         }
     }
@@ -92,8 +92,28 @@ public class GameManager : MonoBehaviour
             int randomIndex = UnityEngine.Random.Range(0, obstacleNames.Length);
             GameObject obstacle = ObjectPoolManager.instance.GetGo(obstacleNames[randomIndex]);
 
-            float xPosition = Random.Range(-4f, 4f);
-            obstacle.transform.position = new Vector3(xPosition, 2, 160);
+            int RnIdx;
+
+            if (obstacle.name == "Bus")
+            {
+                RnIdx = Random.Range(0, 1);
+                obstacle.transform.position = new Vector3(xPos_Two[RnIdx], 0, 160);
+
+                RnIdx = Random.Range(0, 2);
+                obstacle.GetComponent<MeshRenderer>().material = busColor[RnIdx];
+                obstacle.GetComponent<Obstacle>().speed += 5 * (RnIdx + 1);
+            }
+            else if(obstacle.name == "Bomb")
+            {
+                RnIdx = Random.Range(0, 2);
+                obstacle.transform.position = new Vector3(xPos_Three[RnIdx], 2, 160);
+                obstacle.GetComponent<Obstacle>().isRotate = true;
+            }
+            else if(obstacle.name == "Rock")
+            {
+                RnIdx = Random.Range(0, 2);
+                obstacle.transform.position = new Vector3(xPos_Three[RnIdx], 0, 160);
+            }
             obstacle.SetActive(true);
         }
     }
@@ -103,13 +123,11 @@ public class GameManager : MonoBehaviour
         int RN_1 = UnityEngine.Random.Range(0, buildingNames.Length);
         GameObject building_1 = ObjectPoolManager.instance.GetGo(buildingNames[RN_1]);
 
-        // ������ �ǹ� �Ǽ�
         if(Direction > 0)
         {
             building_1.transform.position = new Vector3(15, 0, 160);
             building_1.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
         }
-        // ���� �ǹ� �Ǽ�
         else
         {
             building_1.transform.position = new Vector3(-15, 0, 160);
