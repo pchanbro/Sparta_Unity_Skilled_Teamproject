@@ -17,10 +17,13 @@ public class GameManager : MonoBehaviour
     public string[] obstacleNames;
     private float[] xPos_Bus = { -2.5f, 2.5f};
     private float[] xPos_Bomb = { -5, 0 ,5f};
+    float mapSpeed = 10;
+    public GameObject inGamePopup;
 
 
     private void Awake()
     {
+        inGamePopup.SetActive(true);
         if (instance == null) instance = this;
         else Destroy(this.gameObject);
     }
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnItemsInCenter());
         //GetComponent<AudioSource>().Play();
         //PopupManager.Instance.CreatePopup(PopupType.InGamePopup);
+        GetComponent<AudioSource>().Play();
     }
 
     public void SettingMap()

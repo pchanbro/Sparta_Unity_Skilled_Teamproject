@@ -7,23 +7,23 @@ using UnityEngine.UI;
 /// <summary>
 /// 게임오버 팝업
 /// </summary>
-public class GameOverPopup : BasePopup
+public class GameOverPopup : MonoBehaviour
 {
+    public GameObject gameoverPopup;
     public Text ScoreText;      //스코어text
-    protected override void Init()
+    void Awake()
     {
-        base.Init();
         Time.timeScale = 0f;
-        //ScoreText.text
+        //ScoreText.text = GameManager.Instance.score.ToString();
     }
 
     /// <summary>
     /// 다시하기 버튼
     /// </summary>
-    public void LoadTitle()
+    public void GameoverRetry()
     {
         Time.timeScale = 1f;
-        PopupManager.Instance.Clear();
+        gameoverPopup.SetActive(false);
         SceneManager.LoadScene("Title");
     }
 }

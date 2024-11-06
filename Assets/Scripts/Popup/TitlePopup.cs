@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TitlePopup : BasePopup
+public class TitlePopup : MonoBehaviour
 {
+    public GameObject titlePopup;
     /// <summary>
     /// Start 버튼
     /// </summary>
     public void LoadInGame()
     {
-        PopupManager.Instance.Clear();
         SceneManager.LoadScene("InGame");
+    }
+    public GameObject selectPopup;
+    /// <summary>
+    /// 캐릭터 선택창
+    /// </summary>
+    public void SelectCharacter()
+    {
+        titlePopup.SetActive(false);
+        selectPopup.SetActive(true);
     }
 }
