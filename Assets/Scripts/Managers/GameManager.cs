@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
         SettingMap();
         StartCoroutine(SpawnObstacle());
         StartCoroutine(SpawnItemsInCenter());
-        //GetComponent<AudioSource>().Play();
     }
 
     public void SettingMap()
