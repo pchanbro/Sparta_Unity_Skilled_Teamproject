@@ -1,38 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SelectPopup : MonoBehaviour
+public class SelectPopup : TitlePopup
 {
-    //캐릭터 정보 가져오기
-
-
     /// <summary>
-    /// 캐릭터1
+    /// Monkey
     /// </summary>
     public void StartCharacter1()
     {
-        //Character1 Dispatch
+        InGameManagers.Character.SetPlayerCharacter(0);
         LoadInGame();
     }
 
     /// <summary>
-    /// 캐릭터2
+    /// Mouse
     /// </summary>
     public void StartCharacter2()
     {
-        //Character2 Dispatch
+        InGameManagers.Character.SetPlayerCharacter(1);
         LoadInGame();
     }
 
     /// <summary>
-    /// 캐릭터3
+    /// Sparrow
     /// </summary>
     public void StartCharacter3()
     {
-        //Character3 Dispatch
+        InGameManagers.Character.SetPlayerCharacter(2);
         LoadInGame();
     }
 
@@ -41,6 +37,7 @@ public class SelectPopup : MonoBehaviour
     /// </summary>
     public void LoadInGame()
     {
+        selectPopup.SetActive(false);
         SceneManager.LoadScene("InGame");
     }
 }

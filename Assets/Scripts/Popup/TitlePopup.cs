@@ -5,15 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TitlePopup : MonoBehaviour
 {
-    public GameObject titlePopup;
-    /// <summary>
-    /// Start 버튼
-    /// </summary>
-    public void LoadInGame()
-    {
-        SceneManager.LoadScene("InGame");
-    }
     public GameObject selectPopup;
+    public GameObject titlePopup;
     /// <summary>
     /// 캐릭터 선택창
     /// </summary>

@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     public int totalSpeed = 1;
 
     public float score = 0;
@@ -24,6 +25,10 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
         isGameStart = false;
         inGamePopup.SetActive(true);
     }
