@@ -15,18 +15,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "VerticalMove",
-                    "type": "Value",
-                    "id": "ce176251-47af-41c2-8ff2-7515219d8369",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "33c1b527-7ec1-41e7-8111-245beaf2c2e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CharacterChoice",
+                    "type": "Button",
+                    "id": "4718fabb-3bd0-4704-87cf-bd6620866749",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -68,39 +68,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "3e4caede-0fce-410b-a831-3375a8193340",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "VerticalMove",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "c412527c-77d0-45e5-baaa-3999aef05bea",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "VerticalMove",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "58a13b19-621c-4dad-ad4a-d2623294eeca",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "VerticalMove",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "4cf44ca3-3746-4fec-9e0f-8026078c1719",
                     "path": "<Keyboard>/space",
@@ -108,6 +75,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db412535-36da-4628-b159-9ef84842ff15",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CharacterChoice",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
