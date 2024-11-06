@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        CharacterManager.Instance.Player = this;
+        InGameManagers.Character.Player = this;
     }
 
     public void SetCharacter(Character newCharacter)

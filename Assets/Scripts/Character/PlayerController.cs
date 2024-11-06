@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponentInChildren<Rigidbody>();
-        CharacterManager.Instance.PlayerController = this;
+        InGameManagers.Character.PlayerController = this;
     }
 
     private void Start()
@@ -83,7 +83,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnHorizontalMove(InputAction.CallbackContext context)
     {
-        Debug.Log(IsGrounded());
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
             int inputDir = (int)context.ReadValue<float>();
@@ -162,19 +161,19 @@ public class PlayerController : MonoBehaviour
 
     public void SpawnZero()
     {
-        CharacterManager.Instance.SetPlayerCharacter(0);
+        InGameManagers.Character.SetPlayerCharacter(0);
         image.gameObject.SetActive(false);
     }
 
     public void SpawnOne()
     {
-        CharacterManager.Instance.SetPlayerCharacter(1);
+        InGameManagers.Character.SetPlayerCharacter(1);
         image.gameObject.SetActive(false);
     }
 
     public void SpawnTwo()
     {
-        CharacterManager.Instance.SetPlayerCharacter(2);
+        InGameManagers.Character.SetPlayerCharacter(2);
         image.gameObject.SetActive(false);
     }
 }

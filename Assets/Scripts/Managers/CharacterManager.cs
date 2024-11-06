@@ -6,19 +6,6 @@ public class CharacterManager : MonoBehaviour
 {
     private Dictionary<int, Character> characterDictionary = new Dictionary<int, Character>();
 
-    private static CharacterManager instance;
-    public static CharacterManager Instance
-    {
-        get
-        {
-            if(instance == null)
-            {
-                instance = new GameObject("CharacterManager").AddComponent<CharacterManager>();
-            }
-            return instance;
-        }
-    }
-
     private Player player;
     public Player Player
     {
@@ -38,22 +25,6 @@ public class CharacterManager : MonoBehaviour
     {
         get { return playerAnimationController; }
         set { playerAnimationController = value; }
-    }
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            if (instance == this)
-            {
-                Destroy(gameObject);
-            }
-        }
     }
 
     private void Start()

@@ -13,7 +13,7 @@ public class PlayerAnimationController : AnimationController
     protected override void Awake()
     {
         base.Awake();
-        CharacterManager.Instance.PlayerAnimationController = this;
+        InGameManagers.Character.PlayerAnimationController = this;
     }
 
     void Start()

@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            CharacterManager.Instance.PlayerController.OnTrigger();
+            InGameManagers.Character.PlayerController.OnTrigger();
         }
     }
 }
