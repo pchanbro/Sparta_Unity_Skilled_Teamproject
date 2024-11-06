@@ -4,30 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PausePopup : BasePopup
+public class PausePopup : MonoBehaviour
 {
-    public Text nowScoreText;       //현재 스코어 text
-    protected override void Init()
+    public GameObject pausePopup;
+    public Text nowScoreTxt;       //현재 스코어 text
+    void Awake()
     {
-        base.Init();
         Time.timeScale = 0f;
-        //nowScoreText.text
+        //nowScoreTxt.text = GameManager.Instance.score.ToString();
     }
     /// <summary>
     /// 이어하기 버튼
     /// </summary>
-    public override void Close()
+    public  void Resume()
     {
-        Time.timeScale = 1f;
-        base.Close();
+        Time.timeScale = 1f; 
+        pausePopup.SetActive(false);
     }
     /// <summary>
     /// 다시하기 버튼
     /// </summary>
-    public void LoadTitle()
+    public void PauseRetry()
     {
         Time.timeScale = 1f;
-        PopupManager.Instance.Clear();
+        pausePopup.SetActive(false);
         SceneManager.LoadScene("Title");
     }
 }
