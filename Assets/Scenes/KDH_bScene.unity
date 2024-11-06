@@ -1886,13 +1886,13 @@ MonoBehaviour:
     count: 5
   - objectName: SpeedUpItem
     originPrefab: {fileID: 5148831372906199482, guid: 7e593ea3e95c90746ac2e0e7b8716bf9, type: 3}
-    count: 5
+    count: 20
   - objectName: MagnetItem
     originPrefab: {fileID: 4163438285136040189, guid: e70667d820e687643b6c1bfe6754a2e0, type: 3}
-    count: 5
+    count: 20
   - objectName: SuperJumpItem
     originPrefab: {fileID: 6475243727478962007, guid: b0dfdd76a411d0447b96dc2009708280, type: 3}
-    count: 5
+    count: 20
   - objectName: Bomb
     originPrefab: {fileID: 174260, guid: 39df1ee82f6df3b4e89fe10c42759a4e, type: 3}
     count: 10
@@ -1947,7 +1947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 1
-  itemSpawnInterval: 5
+  itemSpawnInterval: 15
   isGameStart: 1
   buildingNames:
   - Chicken_Shop
@@ -4909,11 +4909,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31628dfe694eb7048a5cffce881bbdbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplier: 150
-  jumpMultiplier: 4
-  magnetRange: 20
-  magnetPullSpeed: 20
-  effectDuration: 10
+  speedMultiplier: 50
+  jumpMultiplier: 2
+  magnetRange: 10
+  magnetPullSpeed: 10
+  effectDuration: 5
   itemSpeed: 10
 --- !u!4 &1031528133
 Transform:
