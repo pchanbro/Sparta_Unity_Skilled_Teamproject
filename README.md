@@ -1,4 +1,8 @@
 # Sparta_Unity_Skilled_Teamproject
+![2](https://github.com/user-attachments/assets/70632df8-c4b7-47aa-a39c-adc74fd94206)
+![1](https://github.com/user-attachments/assets/dc34a7f5-9649-416f-9a62-08409ff9fe66)
+
+
 
 2024 스파르타 Unity track 6기 게임 제작 숙련 주간에서 'Infinite Running Game'를 주제로 3D 종스크롤 러닝 게임을 제작하였습니다.
 
