@@ -53,7 +53,7 @@ public class SoundManager : MonoBehaviour
             case "Title":
                 backgroundMusicSource.clip = titleBGM;
                 break;
-            case "InGame":
+            case "KDH_bScene":
                 backgroundMusicSource.clip = inGameBGM;
                 break;
             default:

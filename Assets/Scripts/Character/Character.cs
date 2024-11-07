@@ -15,6 +15,9 @@ public class Character : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             InGameManagers.Character.PlayerController.OnTrigger();
+            InGameManagers.Game.isGameStart = false;
+            InGameManagers.Game.totalSpeed = 0;
+            InGameManagers.Game.GameOverPopup.SetActive(true);
         }
     }
 }

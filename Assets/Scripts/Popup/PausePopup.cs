@@ -8,13 +8,13 @@ public class PausePopup : InGamePopup
 {
     void OnEnable()
     {
-        Time.timeScale = 0f; // 게임 일시정지
+        Time.timeScale = 0f;
         score.text = InGameManagers.Game.score.ToString("N2");
     }
 
     void OnDisable()
     {
-        Time.timeScale = 1f; // 게임 재개
+        Time.timeScale = 1f;
     }
 
     /// <summary>
@@ -32,7 +32,6 @@ public class PausePopup : InGamePopup
     public void PauseRetry()
     {
         Time.timeScale = 1f;
-        pause.SetActive(false);
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("KDH_bScene");
     }
 }
