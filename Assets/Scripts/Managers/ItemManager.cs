@@ -14,6 +14,7 @@ public class ItemManager : MonoBehaviour
     public float effectDuration = 5.0f;
     public float itemSpeed = 10f;
 
+    private GameObject targetTraceObject;
     private PlayerController playerController;
     private bool isSuperJumpActive = false; // 슈퍼 점프 활성화 여부 확인 변수
 
@@ -50,10 +51,11 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public void ActivateMagnet()
+    public void ActivateMagnet(GameObject traceObj)
     {
         if (playerController != null)
         {
+            targetTraceObject = traceObj;
             StartCoroutine(MagnetCoroutine());
         }
     }
@@ -100,8 +102,8 @@ public class ItemManager : MonoBehaviour
         {
             if (item.CompareTag("Collectible"))
             {
-                Vector3 directionToPlayer = (playerController.transform.position - item.transform.position).normalized;
-                item.transform.position = Vector3.MoveTowards(item.transform.position, playerController.transform.position, magnetPullSpeed * Time.deltaTime);
+                Vector3 directionToPlayer = (targetTraceObject.transform.position - item.transform.position).normalized;
+                item.transform.position = Vector3.MoveTowards(item.transform.position, targetTraceObject.transform.position, magnetPullSpeed * Time.deltaTime);
             }
         }
     }
