@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private float[] xPos_Two = { -2.5f, 2.5f};
     private float[] xPos_Three = { -5, 0 ,5f};
     public Material[] busColor;
+    public GameObject GameOverPopup;
 
     private void Awake()
     {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 /// <summary>
@@ -10,15 +11,17 @@ using UnityEngine.UI;
 public class GameOverPopup : MonoBehaviour
 {
     public GameObject gameoverPopup;
-    public Text ScoreText;      //스코어text
-    void Awake()
+    public Text ScoreText;
+    
+    void OnEnable()
     {
         Time.timeScale = 0f;
+        ScoreText.text = InGameManagers.Game.score.ToString("N2");
     }
 
-    private void Update()
+    void OnDisable()
     {
-        ScoreText.text = InGameManagers.Game.score.ToString();
+        Time.timeScale = 1f;
     }
 
     /// <summary>
@@ -27,7 +30,21 @@ public class GameOverPopup : MonoBehaviour
     public void GameoverRetry()
     {
         Time.timeScale = 1f;
-        gameoverPopup.SetActive(false);
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("KDH_bScene");
     }
+
+    /// <summary>
+    /// 종료 버튼
+    /// </summary>
+    public void ExitGame()
+    {
+        // 에디터에서 실행 중일 경우
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        // 빌드된 애플리케이션에서 실행 중일 경우
+#else
+            Application.Quit();
+#endif
+    }
+
 }
