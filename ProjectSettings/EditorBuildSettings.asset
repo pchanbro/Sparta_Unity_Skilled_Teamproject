@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: 8d0fb8d4b8f60cd408a06dcc5b50a84e
   - enabled: 1
-    path: Assets/Scenes/InGame.unity
-    guid: 2a75c7929138c6e489087181d510cfdd
+    path: Assets/Scenes/KDH_bScene.unity
+    guid: b0a90211cf492634faec4a8dbf97f7d6
   m_configObjects: {}

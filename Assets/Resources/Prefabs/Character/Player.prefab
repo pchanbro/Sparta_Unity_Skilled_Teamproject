@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3311409202858130110}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +146,6 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  image: {fileID: 0}
 --- !u!114 &3311409202858130110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +219,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2490033574595702164, guid: 19b763b0cbde32b48ac566d424ab3d83, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4240335125477062468, guid: 19b763b0cbde32b48ac566d424ab3d83, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -62.529087
@@ -239,6 +242,10 @@ PrefabInstance:
     - target: {fileID: 5031841704478636519, guid: 19b763b0cbde32b48ac566d424ab3d83, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031841704478636519, guid: 19b763b0cbde32b48ac566d424ab3d83, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5882396272256772958, guid: 19b763b0cbde32b48ac566d424ab3d83, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -285,6 +292,14 @@ PrefabInstance:
     - target: {fileID: 4090644066924348, guid: e2af70451e7553c4b822893109a50a72, type: 3}
       propertyPath: m_Name
       value: Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090644066924348, guid: e2af70451e7553c4b822893109a50a72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090644066924348, guid: e2af70451e7553c4b822893109a50a72, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 218228636606743836, guid: e2af70451e7553c4b822893109a50a72, type: 3}
       propertyPath: info
@@ -333,6 +348,10 @@ PrefabInstance:
     - target: {fileID: 5284591940817430221, guid: e2af70451e7553c4b822893109a50a72, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -0.0000025030406
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344307954591171334, guid: e2af70451e7553c4b822893109a50a72, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6194966417240769438, guid: e2af70451e7553c4b822893109a50a72, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -492,6 +511,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2170444875392139132, guid: 1863c842df967164ca79a430523f4a47, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2539589194527858554, guid: 1863c842df967164ca79a430523f4a47, type: 3}
       propertyPath: m_Name
       value: Monkey
@@ -499,6 +522,10 @@ PrefabInstance:
     - target: {fileID: 2539589194527858554, guid: 1863c842df967164ca79a430523f4a47, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539589194527858554, guid: 1863c842df967164ca79a430523f4a47, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2834775157218985013, guid: 1863c842df967164ca79a430523f4a47, type: 3}
       propertyPath: info

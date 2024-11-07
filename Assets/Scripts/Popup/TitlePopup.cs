@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class TitlePopup : MonoBehaviour
 {
-    public GameObject selectPopup;
-    public GameObject titlePopup;
-    /// <summary>
-    /// 캐릭터 선택창
-    /// </summary>
-    public void SelectCharacter()
+    public void StartGame()
     {
-        titlePopup.SetActive(false);
-        selectPopup.SetActive(true);
+        SceneManager.LoadScene("KDH_bScene");
     }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+    }
+
 }

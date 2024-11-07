@@ -8,41 +8,43 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    public int totalSpeed = 1;
-
+    public int totalSpeed;
     public float score = 0;
     public float itemSpawnInterval = 5f;
     public bool isGameStart;
+    public bool isSpawnSet;
     public string[] buildingNames;
     public string[] itemNames;
     public string[] obstacleNames;
     private float[] xPos_Two = { -2.5f, 2.5f};
     private float[] xPos_Three = { -5, 0 ,5f};
-
-    public GameObject inGamePopup;
     public Material[] busColor;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
+        totalSpeed = 0;
         isGameStart = false;
-        inGamePopup.SetActive(true);
+        isSpawnSet = false;
     }
 
     void Start()
     {
         SettingMap();
-        StartCoroutine(SpawnObstacle());
-        StartCoroutine(SpawnItemsInCenter());
     }
 
     private void Update()
     {
-        score += Time.deltaTime;
+        if (isGameStart && !isSpawnSet)
+        {
+            StartCoroutine(SpawnObstacle());
+            StartCoroutine(SpawnItemsInCenter());
+            isSpawnSet = true;
+        }
+
+        if(isGameStart)
+        {
+            score += Time.deltaTime;
+        }
     }
 
     public void SettingMap()
@@ -77,8 +79,6 @@ public class GameManager : MonoBehaviour
 
             zPosition += 20;
         }
-
-        isGameStart = true;
     }
     private IEnumerator SpawnItemsInCenter()
     {

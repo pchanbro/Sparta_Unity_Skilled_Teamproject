@@ -5,20 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public enum HorizontalPosition
-{ 
-    Left = -1,
-    middle,
-    Right
-}
-
-public enum HorizontalMoveDir
-{
-    Left = -1,
-    Right = 1
-};
-
-
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -39,11 +25,11 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponentInChildren<Rigidbody>();
-        InGameManagers.Character.PlayerController = this;
     }
 
     private void Start()
     {
+        InGameManagers.Character.PlayerController = this;
         InGameManagers.Item.SetPlayerController(this);
     }
 
@@ -149,31 +135,5 @@ public class PlayerController : MonoBehaviour
     public void SetCharacter()
     {
         rigidbody = GetComponentInChildren<Rigidbody>();
-    }
-
-    // 이 밑은 임시로 캐릭터를 소환하기 위한 메서드들
-    public Image image;
-
-    public void OnCharacterChoice(InputAction.CallbackContext context)
-    {
-        image.gameObject.SetActive(true);
-    }
-
-    public void SpawnZero()
-    {
-        InGameManagers.Character.SetPlayerCharacter(0);
-        image.gameObject.SetActive(false);
-    }
-
-    public void SpawnOne()
-    {
-        InGameManagers.Character.SetPlayerCharacter(1);
-        image.gameObject.SetActive(false);
-    }
-
-    public void SpawnTwo()
-    {
-        InGameManagers.Character.SetPlayerCharacter(2);
-        image.gameObject.SetActive(false);
     }
 }
