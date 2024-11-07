@@ -4,14 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PausePopup : MonoBehaviour
+public class PausePopup : InGamePopup
 {
-    public GameObject pausePopup;
-    public Text nowScoreTxt;       //현재 스코어 text
     void Awake()
     {
         Time.timeScale = 0f;
-        //nowScoreTxt.text = GameManager.Instance.score.ToString();
+        score.text = GameManager.Instance.score.ToString("N2");
     }
     /// <summary>
     /// 이어하기 버튼
@@ -19,7 +17,7 @@ public class PausePopup : MonoBehaviour
     public  void Resume()
     {
         Time.timeScale = 1f; 
-        pausePopup.SetActive(false);
+        pause.SetActive(false);
     }
     /// <summary>
     /// 다시하기 버튼
@@ -27,7 +25,7 @@ public class PausePopup : MonoBehaviour
     public void PauseRetry()
     {
         Time.timeScale = 1f;
-        pausePopup.SetActive(false);
+        pause.SetActive(false);
         SceneManager.LoadScene("Title");
     }
 }

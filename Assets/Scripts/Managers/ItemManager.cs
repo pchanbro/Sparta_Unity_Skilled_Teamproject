@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    public static ItemManager Instance { get; private set; }
-
     [Header("Item Effect Settings")]
    public float speedMultiplier = 2.0f;
     public float jumpMultiplier = 1.5f;
@@ -15,17 +13,6 @@ public class ItemManager : MonoBehaviour
     public float itemSpeed = 10f; // 아이템 이 일정한 속도 유지
 
     private PlayerController playerController;
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void SetPlayerController(PlayerController player)
     {

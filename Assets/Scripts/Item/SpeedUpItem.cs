@@ -6,8 +6,8 @@ public class SpeedUpItem : PoolAble
     {
         if (other.TryGetComponent<PlayerController>(out var playerController))
         {
-            ItemManager.Instance.SetPlayerController(playerController);
-            ItemManager.Instance.ActivateSpeedUp();
+            InGameManagers.Item.SetPlayerController(playerController);
+            InGameManagers.Item.ActivateSpeedUp();
             ReleaseObject();  // 풀로 반환
         }
     }

@@ -3,29 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Utilities;
+using UnityEngine.SocialPlatforms.Impl;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
+    public int totalSpeed = 1;
 
-    public int playerSpeed = 1;
+    public float score = 0;
     public float itemSpawnInterval = 5f;
-    public bool isGameStart = false;
+    public bool isGameStart;
     public string[] buildingNames;
     public string[] itemNames;
     public string[] obstacleNames;
     private float[] xPos_Two = { -2.5f, 2.5f};
     private float[] xPos_Three = { -5, 0 ,5f};
-    float mapSpeed = 10;
+
     public GameObject inGamePopup;
     public Material[] busColor;
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        isGameStart = false;
         inGamePopup.SetActive(true);
-        if (instance == null) instance = this;
-        else Destroy(this.gameObject);
     }
 
     void Start()
@@ -35,12 +40,17 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnItemsInCenter());
     }
 
+    private void Update()
+    {
+        score += Time.deltaTime;
+    }
+
     public void SettingMap()
     {
         float zPosition = 0;
         for(int i = 0; i < 5; i++)
         {
-            GameObject roads_1 = ObjectPoolManager.instance.GetGo("Roads");
+            GameObject roads_1 = InGameManagers.ObjectPool.GetGo("Roads");
             roads_1.transform.position = roads_1.transform.position + new Vector3(0, 0, zPosition);
             zPosition += 40;
         }
@@ -56,8 +66,8 @@ public class GameManager : MonoBehaviour
                 if (RN_2 != RN_1) break;
             }
 
-            GameObject building_1 = ObjectPoolManager.instance.GetGo(buildingNames[RN_1]);
-            GameObject building_2 = ObjectPoolManager.instance.GetGo(buildingNames[RN_2]);
+            GameObject building_1 = InGameManagers.ObjectPool.GetGo(buildingNames[RN_1]);
+            GameObject building_2 = InGameManagers.ObjectPool.GetGo(buildingNames[RN_2]);
 
             building_1.transform.position = building_1.transform.position + new Vector3(15, 0, -10 + zPosition);
             building_1.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
@@ -67,6 +77,8 @@ public class GameManager : MonoBehaviour
 
             zPosition += 20;
         }
+
+        isGameStart = true;
     }
     private IEnumerator SpawnItemsInCenter()
     {
@@ -75,7 +87,7 @@ public class GameManager : MonoBehaviour
             int randomIndex = UnityEngine.Random.Range(0, itemNames.Length);
             string randomItemName = itemNames[randomIndex];
 
-            GameObject item = ObjectPoolManager.instance.GetGo(randomItemName);
+            GameObject item = InGameManagers.ObjectPool.GetGo(randomItemName);
             float randomX = Random.Range(-5, 5);
             item.transform.position = new Vector3(randomX, 1,  Random.Range(10, 50));
 
@@ -90,7 +102,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
 
             int randomIndex = UnityEngine.Random.Range(0, obstacleNames.Length);
-            GameObject obstacle = ObjectPoolManager.instance.GetGo(obstacleNames[randomIndex]);
+            GameObject obstacle = InGameManagers.ObjectPool.GetGo(obstacleNames[randomIndex]);
 
             int RnIdx;
 
@@ -101,7 +113,7 @@ public class GameManager : MonoBehaviour
 
                 RnIdx = Random.Range(0, 2);
                 obstacle.GetComponent<MeshRenderer>().material = busColor[RnIdx];
-                obstacle.GetComponent<Obstacle>().speed += 5 * (RnIdx + 1);
+                obstacle.GetComponent<Obstacle>().addtionalSpeed += 5 * (RnIdx + 1);
             }
             else if(obstacle.name == "Bomb")
             {
@@ -121,7 +133,7 @@ public class GameManager : MonoBehaviour
     public void SpawnBuilding(int Direction)
     {
         int RN_1 = UnityEngine.Random.Range(0, buildingNames.Length);
-        GameObject building_1 = ObjectPoolManager.instance.GetGo(buildingNames[RN_1]);
+        GameObject building_1 = InGameManagers.ObjectPool.GetGo(buildingNames[RN_1]);
 
         if(Direction > 0)
         {

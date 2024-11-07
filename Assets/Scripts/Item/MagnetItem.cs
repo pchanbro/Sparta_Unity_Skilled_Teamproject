@@ -6,8 +6,8 @@ public class MagnetItem : PoolAble
     {
         if (other.TryGetComponent<PlayerController>(out var playerController))
         {
-            ItemManager.Instance.SetPlayerController(playerController);
-            ItemManager.Instance.ActivateMagnet();
+            InGameManagers.Item.SetPlayerController(playerController);
+            InGameManagers.Item.ActivateMagnet();
             ReleaseObject();  // 풀로 반환
         }
     }
