@@ -12,6 +12,7 @@ public class ItemManager : MonoBehaviour
     public float effectDuration = 5.0f;
     public float itemSpeed = 10f; // 아이템 이 일정한 속도 유지
 
+    private GameObject targetTraceObject;
     private PlayerController playerController;
 
     public void SetPlayerController(PlayerController player)
@@ -35,10 +36,11 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    public void ActivateMagnet()
+    public void ActivateMagnet(GameObject traceObj)
     {
         if (playerController != null)
         {
+            targetTraceObject = traceObj;
             StartCoroutine(MagnetCoroutine());
         }
     }
@@ -83,8 +85,8 @@ public class ItemManager : MonoBehaviour
         {
             if (item.CompareTag("Collectible")) // 아이템 태그 확인
             {
-                Vector3 directionToPlayer = (playerController.transform.position - item.transform.position).normalized;
-                item.transform.position = Vector3.MoveTowards(item.transform.position, playerController.transform.position, magnetPullSpeed * Time.deltaTime);
+                Vector3 directionToPlayer = (targetTraceObject.transform.position - item.transform.position).normalized;
+                item.transform.position = Vector3.MoveTowards(item.transform.position, targetTraceObject.transform.position, magnetPullSpeed * Time.deltaTime);
             }
         }
     }
