@@ -90,7 +90,10 @@ public class ItemManager : MonoBehaviour
     }
     private void Update()
     {
-        MoveItems();
+        if(InGameManagers.Game.isGameStart)
+        {
+            MoveItems();
+        }
     }
 
     private void MoveItems()

@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     private Character character;
 
-    private void Awake()
+    private void Start()
     {
         InGameManagers.Character.Player = this;
     }

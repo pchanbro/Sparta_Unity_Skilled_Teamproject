@@ -13,7 +13,7 @@ public class InGamePopup : MonoBehaviour
 
     private void Update()
     {
-        score.text = GameManager.Instance.score.ToString("N2");
+        score.text = InGameManagers.Game.score.ToString("N2");
     }
     /// <summary>
     /// 퍼즈 버튼

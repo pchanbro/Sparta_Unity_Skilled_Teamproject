@@ -1393,7 +1393,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfe96c2cb6cbe24f9f3f87b0ef08b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 1
+  totalSpeed: 1
+  score: 0
+  itemSpawnInterval: 5
   isGameStart: 1
   buildingNames:
   - Chicken_Shop
@@ -1409,7 +1411,8 @@ MonoBehaviour:
   obstacleNames:
   - Bomb
   - Bus
-  itemSpawnInterval: 5
+  inGamePopup: {fileID: 0}
+  busColor: []
 --- !u!1001 &380061285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7315,63 +7318,6 @@ Transform:
   - {fileID: 1095911893}
   m_Father: {fileID: 744404437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2083545929
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 241855478245186038, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_Name
-      value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550214984467726298, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550214984467726298, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550214984467726298, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550214984467726298, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550214984467726298, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550214984467726298, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550214984467726298, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550214984467726298, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550214984467726298, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4550214984467726298, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: adcb48bf67ba10546accb0e49a07d727, type: 3}
 --- !u!1 &2095980244
 GameObject:
   m_ObjectHideFlags: 0
@@ -7990,5 +7936,4 @@ SceneRoots:
   - {fileID: 358134210}
   - {fileID: 356263744}
   - {fileID: 1031528133}
-  - {fileID: 2083545929}
   - {fileID: 599009469636413132}

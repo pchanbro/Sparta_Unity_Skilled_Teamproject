@@ -14,7 +14,11 @@ public class GameOverPopup : MonoBehaviour
     void Awake()
     {
         Time.timeScale = 0f;
-        //ScoreText.text = GameManager.Instance.score.ToString();
+    }
+
+    private void Update()
+    {
+        ScoreText.text = InGameManagers.Game.score.ToString();
     }
 
     /// <summary>

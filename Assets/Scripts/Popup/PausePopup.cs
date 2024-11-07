@@ -6,11 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class PausePopup : InGamePopup
 {
-    void Awake()
+    void OnEnable()
     {
-        Time.timeScale = 0f;
-        score.text = GameManager.Instance.score.ToString("N2");
+        Time.timeScale = 0f; // 게임 일시정지
+        score.text = InGameManagers.Game.score.ToString("N2");
     }
+
+    void OnDisable()
+    {
+        Time.timeScale = 1f; // 게임 재개
+    }
+
     /// <summary>
     /// 이어하기 버튼
     /// </summary>
@@ -19,6 +25,7 @@ public class PausePopup : InGamePopup
         Time.timeScale = 1f; 
         pause.SetActive(false);
     }
+
     /// <summary>
     /// 다시하기 버튼
     /// </summary>

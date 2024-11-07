@@ -5,39 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class SelectPopup : TitlePopup
 {
+    public GameObject InGamePopup;
     /// <summary>
-    /// Monkey
+    /// SelectCharacter
     /// </summary>
-    public void StartCharacter1()
+    public void SelectCharacter(int num)
     {
-        InGameManagers.Character.SetPlayerCharacter(0);
-        LoadInGame();
+        InGameManagers.Character.SetPlayerCharacter(num);
+        InGameStart();
     }
 
     /// <summary>
-    /// Mouse
+    /// 게임 시작 버튼
     /// </summary>
-    public void StartCharacter2()
+    public void InGameStart()
     {
-        InGameManagers.Character.SetPlayerCharacter(1);
-        LoadInGame();
-    }
-
-    /// <summary>
-    /// Sparrow
-    /// </summary>
-    public void StartCharacter3()
-    {
-        InGameManagers.Character.SetPlayerCharacter(2);
-        LoadInGame();
-    }
-
-    /// <summary>
-    /// Start 버튼
-    /// </summary>
-    public void LoadInGame()
-    {
-        selectPopup.SetActive(false);
-        SceneManager.LoadScene("InGame");
+        InGamePopup.SetActive(true);
+        gameObject.SetActive(false);
+        InGameManagers.Game.isGameStart = true;
+        InGameManagers.Game.totalSpeed = 15;
     }
 }
